@@ -21,28 +21,30 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.callback;
+package com.iluwatar.strangler;
 
-import static org.slf4j.LoggerFactory.getLogger;
+import org.junit.jupiter.api.Test;
 
-import org.slf4j.Logger;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * This example generates the exact same output as {@link App} however the callback has been defined
- * as a Lambdas expression.
+ * Test methods in HalfArithmetic
  */
-public final class LambdasApp {
+class HalfArithmeticTest {
+  private static final HalfArithmetic arithmetic = new HalfArithmetic(new HalfSource(), new OldSource());
 
-  private static final Logger LOGGER = getLogger(LambdasApp.class);
-
-  private LambdasApp() {
+  @Test
+  public void testSum() {
+    assertEquals(0, arithmetic.sum(-1, 0, 1));
   }
 
-  /**
-   * Program entry point.
-   */
-  public static void main(final String[] args) {
-    var task = new SimpleTask();
-    task.executeWith(() -> LOGGER.info("I'm done now."));
+  @Test
+  public void testMul() {
+    assertEquals(0, arithmetic.mul(-1, 0, 1));
+  }
+
+  @Test
+  public void testIfHasZero() {
+    assertTrue(arithmetic.ifHasZero(-1, 0, 1));
   }
 }
